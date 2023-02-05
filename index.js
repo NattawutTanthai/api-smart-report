@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 const indexRouter = require("./routes/index");
 const taskRouter = require("./routes/task");
 const typeRouter = require("./routes/type");
+const waitReportRouter = require("./routes/waitReport");
 
 const app = express(); // Create express app
 
@@ -21,6 +22,7 @@ app.use(express.static(__dirname)); // Serve static files
 app.use("/", indexRouter);
 app.use("/task", taskRouter);
 app.use("/type", typeRouter);
+app.use("/waitReport", waitReportRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port} \n http://localhost:${port}`);

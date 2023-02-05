@@ -38,4 +38,11 @@ router.delete("/:id", (req, res, next) => {
   });
 });
 
+router.patch("/:id", (req, res, next) => {
+  task.findByIdAndUpdate(req.params.id, req.body, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 module.exports = router;
