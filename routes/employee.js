@@ -28,7 +28,7 @@ router.post("/register", async (req, res, next) => {
   });
 });
 
-router.post("/login", verifyToken ,async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
   // Comparison
@@ -49,12 +49,11 @@ router.post("/login", verifyToken ,async (req, res, next) => {
 
     res.status(200).json({
       message: "Login Successful",
-      token : Token,
+      token: Token,
     });
-  }else{
+  } else {
     res.status(400).json("Login Failed");
   }
-
 });
 
 module.exports = router;
