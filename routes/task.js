@@ -11,30 +11,30 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-  task.findById(req.params.id, (err, order) => {
+  task.findById(req.params.id, (err, task) => {
     if (err) return next(err);
-    res.json(order);
+    res.json(task);
   });
 });
 
 router.post("/", (req, res, next) => {
-  task.create(req.body, (err, post) => {
+  task.create(req.body, (err, task) => {
     if (err) return next(err);
-    res.json(post);
+    res.json(task);
   });
 });
 
 router.put("/:id", (req, res, next) => {
-  task.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+  task.findByIdAndUpdate(req.params.id, req.body, (err, task) => {
     if (err) return next(err);
-    res.json(post);
+    res.json(task);
   });
 });
 
 router.delete("/:id", (req, res, next) => {
-  task.findByIdAndDelete(req.params.id, (err, post) => {
+  task.findByIdAndDelete(req.params.id, (err, task) => {
     if (err) return next(err);
-    res.json(post);
+    res.json(task);
   });
 });
 

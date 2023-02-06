@@ -9,6 +9,8 @@ const indexRouter = require("./routes/index");
 const taskRouter = require("./routes/task");
 const typeRouter = require("./routes/type");
 const waitReportRouter = require("./routes/waitReport");
+const processRouter = require("./routes/process");
+const employeeRouter = require("./routes/employee");
 
 const app = express(); // Create express app
 
@@ -23,6 +25,8 @@ app.use("/", indexRouter);
 app.use("/task", taskRouter);
 app.use("/type", typeRouter);
 app.use("/waitReport", waitReportRouter);
+app.use("/process", processRouter);
+app.use("/employee", employeeRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port} \n http://localhost:${port}`);
