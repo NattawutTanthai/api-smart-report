@@ -5,6 +5,13 @@ const bcrypt = require("bcrypt");
 const emp = require("../schemas/employee");
 const jwt = require("jsonwebtoken");
 
+router.get("/", async (req, res, next) => {
+  emp.find((err, emp) => {
+    if (err) return next(err);
+    res.status(200).json(emp);
+  });
+})
+
 router.post("/register", async (req, res, next) => {
   const { fname, username, password } = req.body;
 
@@ -40,10 +47,11 @@ router.post("/login", async (req, res, next) => {
       {
         id: employee._id,
         username: employee.username,
+        password: employee.password,
       },
       process.env.TOKEN_SECRET,
       {
-        expiresIn: 300, // 5 minutes
+        expiresIn: "24h", // 5 minutes
       }
     );
 

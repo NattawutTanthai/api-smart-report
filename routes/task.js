@@ -24,6 +24,13 @@ router.post("/", (req, res, next) => {
   });
 });
 
+router.post("/:id", (req, res, next) => {
+  task.findByIdAndUpdate(req.params.id, req.body, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 router.put("/:id", (req, res, next) => {
   task.findByIdAndUpdate(req.params.id, req.body, (err, task) => {
     if (err) return next(err);
