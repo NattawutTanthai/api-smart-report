@@ -13,6 +13,8 @@ const taskSchema = new mongoose.Schema({
   startDate_timeStamp: Number, // เวลาเริ่ม
   processDate_timeStamp: Number, // เวลากำลังดำเนินการ
   endDate_timeStamp: Number, // เวลาสิ้นสุด
+  empProcess: String, // ผู้ดำเนินการ
+  empEnd: String, // ผู้สิ้นสุด
   commentProcess: String, // ความคิดเห็นของผู้ดำเนินการ
   commentEnd: String, // ความคิดเห็นสิ้นสุด
   status: Number, // สถานะ 0=รอดำเนินการ, 1=กำลังดำเนินการ, 2=เสร็จสิ้น 3=ส่งต่อ
