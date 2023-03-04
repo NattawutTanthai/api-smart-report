@@ -12,6 +12,14 @@ router.get("/", async (req, res, next) => {
   });
 })
 
+router.get("/:id", (req, res, next) => {
+  const {id} = req.params; 
+  emp.findOne({username : id}, (err, emp) => {
+    if (err) return next(err);
+    res.json(emp);
+  });
+});
+
 router.post("/register", async (req, res, next) => {
   const { fname, username, password } = req.body;
 
