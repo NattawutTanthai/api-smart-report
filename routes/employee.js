@@ -72,4 +72,11 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.delete("/:id", (req, res, next) => {
+  emp.findByIdAndDelete(req.params.id, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 module.exports = router;

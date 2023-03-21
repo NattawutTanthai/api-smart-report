@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 require("dotenv").config();
 
 const connect = require("./connect"); // Connect to database
-const port = process.env.PORT || 3000;
+const port = 3333;
 const indexRouter = require("./routes/index");
 const taskRouter = require("./routes/task");
 const typeRouter = require("./routes/type");
