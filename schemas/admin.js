@@ -6,7 +6,6 @@ const adminSchema = new mongoose.Schema({
   username: String, // ชื่อผู้ใช้
   password: String, // รหัสผ่าน
   phone: String, // เบอร์ติดต่อ
-  type: String, // ประเภทผู้ใช้งาน
 });
 
 module.exports = mongoose.model("admin", adminSchema);
