@@ -15,6 +15,7 @@ const processRouter = require("./routes/process");
 const successRouter = require("./routes/success");
 const sentToRouter = require("./routes/sentTo");
 const employeeRouter = require("./routes/employee");
+const adminRouter = require("./routes/admin");
 const authRouter = require("./routes/auth");
 
 const app = express(); // Create express app
@@ -36,6 +37,7 @@ app.use("/process", processRouter);
 app.use("/success", successRouter);
 app.use("/sentTo", sentToRouter);
 app.use("/employee", employeeRouter);
+app.use("/admin", adminRouter);
 app.use("/auth", authRouter);
 
 app.listen(port, () => {

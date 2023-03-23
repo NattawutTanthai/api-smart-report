@@ -10,11 +10,11 @@ router.get("/", async (req, res, next) => {
     if (err) return next(err);
     res.status(200).json(emp);
   });
-})
+});
 
 router.get("/:id", (req, res, next) => {
-  const {id} = req.params; 
-  emp.findOne({username : id}, (err, emp) => {
+  const { id } = req.params;
+  emp.findOne({ username: id }, (err, emp) => {
     if (err) return next(err);
     res.json(emp);
   });
@@ -74,6 +74,20 @@ router.post("/login", async (req, res, next) => {
 
 router.delete("/:id", (req, res, next) => {
   emp.findByIdAndDelete(req.params.id, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
+router.put("/:id", (req, res, next) => {
+  emp.findByIdAndUpdate(req.params.id, req.body, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
+router.post("/", (req, res, next) => {
+  emp.create(req.body, (err, task) => {
     if (err) return next(err);
     res.json(task);
   });
