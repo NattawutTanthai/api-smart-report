@@ -28,9 +28,9 @@ router.post("/register", async (req, res, next) => {
   const ck_username = await emp.findOne({ username: username });
 
   // Check if username already exists
-  if (ck_username) return res.status(400).send("Username already exists");
+  if (ck_username) return res.status(400).send({message:"มี Username นี้อยู่ในระบบแล้ว"});
   // Check if name already exists
-  if (ck_fname) return res.status(400).send("Name already exists");
+  if (ck_fname) return res.status(400).send({message:"มีชื่อนี้อยู่ในระบบแล้ว"});
 
   // Encrypt password
   encryptPassword = await bcrypt.hash(password, 10);
