@@ -37,9 +37,6 @@ router.post("/login", async (req, res, next) => {
 
   // Comparison
   const adminCompar = await admin.findOne({ username });
-  console.log(adminCompar);
-  console.log("username", username);
-  console.log("password", password);
 
   // Check if username not exists
   if (adminCompar == null)
