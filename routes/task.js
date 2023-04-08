@@ -17,6 +17,15 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
+//GET by username employee
+router.post("/getByType", (req, res, next) => {
+  const { type, status } = req.body;
+  task.find({ type: type, status: status }, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 router.post("/", (req, res, next) => {
   task.create(req.body, (err, task) => {
     if (err) return next(err);
