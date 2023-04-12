@@ -17,10 +17,18 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
-//GET by username employee
+//GET by Type
 router.post("/getByType", (req, res, next) => {
   const { type, status } = req.body;
   task.find({ type: type, status: status }, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
+router.post("/getSentFrom", (req, res, next) => {
+  const { type } = req.body;
+  task.find({ sentFrom: type }, (err, task) => {
     if (err) return next(err);
     res.json(task);
   });

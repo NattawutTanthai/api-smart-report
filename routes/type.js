@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const type = require("../schemas/type");
+const generateUniqueId = require("generate-unique-id");
 
 // Get all types
 router.get("/", (req, res, next) => {
@@ -18,7 +19,12 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  type.create(req.body, (err, post) => {
+  const { name } = req.body;
+  const code = generateUniqueId({
+    length: 6,
+    useLetters: false,
+  });
+  type.create({ name: name, code: code }, (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
