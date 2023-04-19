@@ -10,6 +10,14 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.post("/getByUser", (req, res, next) => {
+  const { user } = req.body;
+  task.find({name : user},(err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 router.get("/:id", (req, res, next) => {
   task.findById(req.params.id, (err, task) => {
     if (err) return next(err);
