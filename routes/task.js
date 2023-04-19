@@ -17,6 +17,16 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
+router.get("/count/type", (req, res, next) => {
+  task.aggregate(
+    [{ $group: { _id: "$type", count: { $count: {} } } }],
+    (err, task) => {
+      if (err) return next(err);
+      res.json(task);
+    }
+  );
+});
+
 //GET by Type
 router.post("/getByType", (req, res, next) => {
   const { type, status } = req.body;
