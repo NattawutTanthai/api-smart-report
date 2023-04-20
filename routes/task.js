@@ -10,9 +10,17 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.post("/get/history", (req, res, next) => {
+  const { user } = req.body;
+  task.find({ name: user, status: 2 }, (err, task) => {
+    if (err) return next(err);
+    res.json(task);
+  });
+});
+
 router.post("/getByUser", (req, res, next) => {
   const { user } = req.body;
-  task.find({name : user},(err, task) => {
+  task.find({ name: user }, (err, task) => {
     if (err) return next(err);
     res.json(task);
   });
