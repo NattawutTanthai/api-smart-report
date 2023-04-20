@@ -18,7 +18,7 @@ router.post("/get/history", (req, res, next) => {
   });
 });
 
-router.post("/getByUser", (req, res, next) => {
+router.post("/get/user", (req, res, next) => {
   const { user } = req.body;
   task.find({ name: user }, (err, task) => {
     if (err) return next(err);
