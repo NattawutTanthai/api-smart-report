@@ -1,6 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const task = require("../schemas/task");
+const { default: axios } = require("axios");
+
+const token_group = {
+  token_bin: "mPowMUb0CtGMXW3GWdSkBCSjzVSyxWpl7IyIAvtvq4g",
+  token_school: "EVb9MXEomIzpGRwQsBMuFDAfTnv3MhEDu7DPkFimwej",
+  token_road: "b8PFtPNsdkb9uMy4UFydn11VHfKNI8iE7NlruulmfIK",
+};
+
+const ck_type = (data) => {
+  if ((data = "ขยะ")) {
+    return token_group.token_bin;
+  } else if ((data = "ถนน")) {
+    return token_group.token_road;
+  } else if (data == "ห้องเรียน") {
+    return token_group.token_school;
+  }
+};
 
 // Get all tasks
 router.get("/", (req, res, next) => {
@@ -61,6 +78,38 @@ router.post("/getSentFrom", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
+  const { name, type, address, detail } = req.body;
+  var message =
+    "มีการแจ้งปัญหา" +
+    type +
+    "\nรายละเอียด : " +
+    detail +
+    "\nผู้แจ้ง : " +
+    name +
+    "\nวันที่แจ้ง : " +
+    new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" }) +
+    "\nสถานที่ : " +
+    address;
+  axios
+    .post(
+      "https://notify-api.line.me/api/notify",
+      {
+        message: message,
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: "Bearer " + ck_type(type),
+        },
+      }
+    )
+    .then((response) => {
+      console.log("ok notify");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   task.create(req.body, (err, task) => {
     if (err) return next(err);
     res.json(task);
