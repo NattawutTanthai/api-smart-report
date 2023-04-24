@@ -10,9 +10,9 @@ const token_group = {
 };
 
 const ck_type = (data) => {
-  if ((data = "ขยะ")) {
+  if (data == "ขยะ") {
     return token_group.token_bin;
-  } else if ((data = "ถนน")) {
+  } else if (data == "ถนน") {
     return token_group.token_road;
   } else if (data == "ห้องเรียน") {
     return token_group.token_school;
