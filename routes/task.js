@@ -29,6 +29,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/get/history", (req, res, next) => {
   const { user } = req.body;
+  // console.log(user)
   task.find({ name: user, status: 2 }, (err, task) => {
     if (err) return next(err);
     res.json(task);
