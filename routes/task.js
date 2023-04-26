@@ -29,19 +29,29 @@ router.get("/", (req, res, next) => {
 
 router.post("/get/history", (req, res, next) => {
   const { user } = req.body;
-  // console.log(user)
-  task.find({ name: user, status: 2 }, (err, task) => {
-    if (err) return next(err);
-    res.json(task);
-  });
+
+  task
+    .find({ name: user, status: 2 })
+    .sort({ _id: -1 })
+    .then((task) => {
+      res.json(task);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 router.post("/get/user", (req, res, next) => {
   const { user } = req.body;
-  task.find({ name: user }, (err, task) => {
-    if (err) return next(err);
-    res.json(task);
-  });
+  task
+    .find({ name: user })
+    .sort({ _id: -1 })
+    .then((task) => {
+      res.json(task);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 router.get("/:id", (req, res, next) => {
