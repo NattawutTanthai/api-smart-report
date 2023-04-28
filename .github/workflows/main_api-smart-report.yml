@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'api-smart-report'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F03A8C0C92D84821AF013F5EDB15274B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3F76AFBD413C4F27B6327AA520892104 }}
           package: .
